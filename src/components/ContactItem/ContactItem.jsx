@@ -1,28 +1,29 @@
-import { deleteContact } from 'redux/contactsSlice';
-import { useDispatch } from 'react-redux';
+// import { deleteContact } from 'redux/contactsSlice';
+// import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, DataConteiner, Text } from './ContactItem.styled';
 
-function ContactItem({ contact: { id, name, number } }) {
-  const dispatch = useDispatch();
-  const onDelete = () => dispatch(deleteContact(id));
+function ContactItem({ contact: { id, name, phone } }) {
+  // const dispatch = useDispatch();
+  // const onDelete = () => dispatch(deleteContact(id));
 
   return (
     <>
       <DataConteiner>
         <Text>{name}:</Text>
-        <Text>{number}</Text>
+        <Text>{phone}</Text>
       </DataConteiner>
-      <Button onClick={onDelete}>Delete</Button>
+      <Button onClick={() => null}>Delete</Button>
     </>
   );
 }
 
 ContactItem.propTypes = {
   contact: PropTypes.exact({
+    createdAt: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }).isRequired,
 };
 

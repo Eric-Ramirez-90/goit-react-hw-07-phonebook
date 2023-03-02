@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from '../../redux/operation';
+import { getError, getIsLoading } from 'redux/selectors';
 // Libraries
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,8 +13,17 @@ import ContactList from '../ContactList';
 import { Section, SubTitle, Title } from './App.styled';
 
 function App() {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Section>
+      {isLoading && !error && <b>Request in progress...</b>}
       <Title>Phonebook</Title>
       <ContactForm />
       <SubTitle>Contacts</SubTitle>
