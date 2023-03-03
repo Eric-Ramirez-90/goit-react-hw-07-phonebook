@@ -23,11 +23,11 @@ function App() {
 
   return (
     <Section>
-      {isLoading && !error && <b>Request in progress...</b>}
       <Title>Phonebook</Title>
       <ContactForm />
       <SubTitle>Contacts</SubTitle>
       <Filter />
+      {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
       <ToastContainer autoClose={3000} rtl position="top-center" />
     </Section>

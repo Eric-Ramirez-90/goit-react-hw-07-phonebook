@@ -1,11 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './operation';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { fetchContacts, addContact, deleteContact } from './operation';
 
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import initialContacts from '../components/initialContacts';
+const extraActions = [fetchContacts, addContact, deleteContact];
 
-//
+const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -15,35 +13,31 @@ const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [fetchContacts.pending](state) {
-      state.isLoading = true;
-    },
-    [fetchContacts.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.contacts = action.payload;
-    },
-    [fetchContacts.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-  },
+  extraReducers: builder =>
+    builder
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+        state.contacts = payload;
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.contacts.unshift(payload);
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.contacts = state.contacts.filter(
+          contact => contact.id !== payload.id
+        );
+      })
+      .addMatcher(isAnyOf(...getActions('pending')), state => {
+        state.isLoading = true;
+      })
+      .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addMatcher(isAnyOf(...getActions('fulfilled')), state => {
+        state.isLoading = false;
+        state.error = null;
+      }),
   reducers: {
-    // addcontact: (state, action) => {
-    //   const { name, number } = action.payload;
-    //   const contact = {
-    //     id: nanoid(),
-    //     name,
-    //     number,
-    //   };
-    //   state.contacts.unshift(contact);
-    // },
-    // deleteContact: (state, action) => {
-    //   state.contacts = state.contacts.filter(
-    //     contact => contact.id !== action.payload
-    //   );
-    // },
     filteredContacts: (state, action) => {
       state.filter = action.payload;
     },

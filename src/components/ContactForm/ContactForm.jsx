@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operation';
 // import { addcontact } from 'redux/contactsSlice';
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
@@ -42,9 +43,7 @@ const initialValues = {
 
 function ContactForm() {
   const contacts = useSelector(getContacts);
-  // const dispatch = useDispatch();
-
-  console.log(contacts);
+  const dispatch = useDispatch();
 
   const createContact = ({ name, number }, { resetForm }) => {
     if (
@@ -65,7 +64,7 @@ function ContactForm() {
       return;
     }
 
-    // dispatch(addcontact({ name, number }));
+    dispatch(addContact({ name, number }));
     resetForm();
   };
 
@@ -93,7 +92,7 @@ function ContactForm() {
               <Input
                 type="tel"
                 name="number"
-                placeholder="123-45-67"
+                placeholder="123-456-7890"
                 validate={validateNumber}
               />
               <FormError name="number" />
