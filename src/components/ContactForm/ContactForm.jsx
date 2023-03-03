@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operation';
 // import { addcontact } from 'redux/contactsSlice';
 import { toast } from 'react-toastify';
@@ -42,7 +42,7 @@ const initialValues = {
 };
 
 function ContactForm() {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const createContact = ({ name, number }, { resetForm }) => {

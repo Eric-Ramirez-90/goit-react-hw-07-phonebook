@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/operation';
-import { getError, getIsLoading } from 'redux/selectors';
 // Libraries
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,8 +13,6 @@ import { Section, SubTitle, Title } from './App.styled';
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -27,7 +24,6 @@ function App() {
       <ContactForm />
       <SubTitle>Contacts</SubTitle>
       <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
       <ToastContainer autoClose={3000} rtl position="top-center" />
     </Section>
