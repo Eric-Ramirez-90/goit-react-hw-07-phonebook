@@ -8,8 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 import ContactList from '../ContactList';
-// Styles
-import { Section, SubTitle, Title } from './App.styled';
+import Layout from 'components/Layout/Layout';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,14 +18,12 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Section>
-      <Title>Phonebook</Title>
+    <Layout>
       <ContactForm />
-      <SubTitle>Contacts</SubTitle>
       <Filter />
       <ContactList />
       <ToastContainer autoClose={3000} rtl position="top-center" />
-    </Section>
+    </Layout>
   );
 }
 

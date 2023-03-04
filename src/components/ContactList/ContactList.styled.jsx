@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Title = styled.h2`
+  margin-bottom: 20px;
+`;
+
 export const Container = styled.div`
   width: 380px;
   padding: 15px;

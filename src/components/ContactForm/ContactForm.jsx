@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operation';
-// import { addcontact } from 'redux/contactsSlice';
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -18,7 +17,7 @@ const validateName = value => {
     !/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(value)
   ) {
     errorMessage =
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
+      'Name may contain only letters, apostrophe, dash and spaces. For example Jacob Mercer.';
   }
   return errorMessage;
 };
@@ -31,7 +30,7 @@ const validateNumber = value => {
     )
   ) {
     errorMessage =
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +';
+      'Phone number must be digits and can contain spaces, dashes.';
   }
   return errorMessage;
 };

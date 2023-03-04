@@ -4,12 +4,12 @@ import { Field, ErrorMessage } from 'formik';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
+  margin: 0 auto;
 
-  width: 450px;
+  width: 400px;
   padding: 15px;
-  margin-bottom: 20px;
 
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
@@ -20,12 +20,14 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  text-align: center;
 
   font-size: 20px;
   font-weight: 500;
 `;
 
 export const Input = styled(Field)`
+  width: 260px;
   padding: 5px;
   font-size: 18px;
   border: none;
@@ -67,7 +69,9 @@ export const Button = styled.button`
 `;
 
 const ErrorText = styled.p`
-  font-size: 14px;
+  max-width: 260px;
+  text-align: center;
+  font-size: 12px;
   color: red;
 `;
 
