@@ -1,11 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operation';
-import { useDispatch } from 'react-redux';
+import { selectIsLoading } from 'redux/selectors';
+import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import { Button, DataConteiner, Text } from './ContactItem.styled';
 
 function ContactItem({ contact: { id, name, number } }) {
   const dispatch = useDispatch();
   const onDelete = () => dispatch(deleteContact(id));
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <>
@@ -13,7 +16,13 @@ function ContactItem({ contact: { id, name, number } }) {
         <Text>{name}:</Text>
         <Text>{number}</Text>
       </DataConteiner>
-      <Button onClick={onDelete}>Delete</Button>
+      <Button onClick={onDelete} disabled={isLoading}>
+        {isLoading ? (
+          <ThreeCircles height="20" width="20" color="#005BBB" />
+        ) : (
+          'Delete'
+        )}
+      </Button>
     </>
   );
 }

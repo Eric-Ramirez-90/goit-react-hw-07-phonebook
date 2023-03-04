@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter, selectContacts } from '../../redux/selectors';
 import { filteredContacts } from '../../redux/filterSlice';
-import { Container, Input, Label } from './Filter.styled';
+import {
+  Container,
+  Input,
+  Label,
+  SubTitle,
+  Title,
+  Wrapper,
+} from './Filter.styled';
 
 function Filter() {
   const filter = useSelector(selectFilter) || '';
@@ -18,17 +25,21 @@ function Filter() {
 
   return (
     <Container>
-      <Label>
-        Find contacts by name
-        <Input type="text" value={filter} onChange={changeFilter} />
+      <Title>Contacts</Title>
+
+      <Wrapper>
+        <Label>
+          Find contacts by name or number
+          <Input type="text" value={filter} onChange={changeFilter} />
+        </Label>
         {contacts.length > 0 && (
           <div>
-            <h3>
+            <SubTitle>
               Total contacts: <span>{contacts.length}</span>
-            </h3>
+            </SubTitle>
           </div>
         )}
-      </Label>
+      </Wrapper>
     </Container>
   );
 }

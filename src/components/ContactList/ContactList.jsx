@@ -7,7 +7,8 @@ import {
 } from 'redux/selectors';
 import Notification from '../Notification';
 import ContactItem from '../ContactItem';
-import { Container, Item, List, Title } from './ContactList.styled';
+import { Container, Item, List } from './ContactList.styled';
+import Loader from 'components/Loader/Loader';
 
 function ContactList() {
   const filtredContact = useSelector(selectVisibleContacts) || '';
@@ -17,9 +18,7 @@ function ContactList() {
 
   return (
     <>
-      <Title>Contacts</Title>
-
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && <Loader size="50" />}
       {!isLoading && !contacts.length > 0 ? (
         <Notification message="There is no contacts" />
       ) : (

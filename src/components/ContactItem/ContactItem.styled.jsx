@@ -4,6 +4,7 @@ export const DataConteiner = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const Text = styled.p`
@@ -29,5 +30,6 @@ export const Button = styled.button`
   :hover,
   :focus {
     background-color: red;
+    color: #fff;
   }
 `;
