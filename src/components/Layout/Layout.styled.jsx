@@ -8,7 +8,7 @@ export const Main = styled.main`
   margin: 0 auto;
   padding: 16px;
 
-  background-color: rgb(128, 128, 128, 0.5);
+  background-color: rgb(128, 128, 128, 0.9);
 
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
